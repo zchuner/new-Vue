@@ -1,13 +1,14 @@
 <template>
 <div>
   <h3>我是列表页</h3>
+
   <div class="list" v-for="item in list">
   	<div>
   		<span>名称：{{item.name}}</span>
   		<span>编号：{{item.id}}</span>
   	</div>
   	<div v-show="isshow">
-  		<router-link to="./home">
+  		<router-link :to="{name:'show', params: {id:item.id}}">
   		<img  :src='item.img' />
   		</router-link>
   	</div>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-
+import show from './show'
 export default {
  name: 'msg',
   data () {
@@ -60,6 +61,9 @@ export default {
   			this.title="不想";
   		}
   	}
+  },
+  components:{
+  	show
   }
 }
 </script>
@@ -69,12 +73,19 @@ export default {
 .list{
 	float:left;
 	width:50%;
-	
+  height:400px;
+	box-sizing:border-box;
+  border:1px solid red;
+  text-align:center;
+  line-height:100px;
 }
 .list div{
 	padding:5px;
 }
 .list div span{
 	padding-right:20px;
+}
+.list div img{
+  texe-align:center;
 }
 </style>
